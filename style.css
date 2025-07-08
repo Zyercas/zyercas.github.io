@@ -9,7 +9,28 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden; /* Hide scrollbars */
+    overflow: hidden;
+}
+
+#arming-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#arming-text {
+    font-size: 3rem;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    animation: blink 1.5s infinite alternate;
 }
 
 .overlay {
@@ -18,21 +39,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none; /* Make sure we can click through it */
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5) 1px, transparent 1px, transparent 2px);
+    pointer-events: none;
     z-index: 1;
 }
 
 h1 {
     font-size: 3rem;
     text-transform: uppercase;
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #d40000, 0 0 70px #d40000, 0 0 80px #d40000, 0 0 100px #d40000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #d40000, 0 0 70px #d40000;
     animation: blink 1s infinite alternate;
     z-index: 2;
 }
@@ -40,21 +55,17 @@ h1 {
 #timer {
     font-size: 10rem;
     font-weight: bold;
-    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000, 0 0 80px #d40000, 0 0 120px #d40000, 0 0 150px #d40000, 0 0 200px #d40000;
+    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000, 0 0 80px #d40000, 0 0 120px #d40000;
     animation: glow 1.5s infinite alternate;
     z-index: 2;
 }
 
 @keyframes blink {
-    to {
-        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #d40000, 0 0 35px #d40000, 0 0 40px #d40000, 0 0 50px #d40000;
-    }
+    to { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #d40000; }
 }
 
 @keyframes glow {
-    to {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #d40000, 0 0 70px #d40000, 0 0 80px #d40000, 0 0 100px #d40000;
-    }
+    to { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #d40000; }
 }
 
 #popup {
@@ -65,22 +76,13 @@ h1 {
     background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid #ff0000;
     padding: 20px;
-    z-index: 3;
+    z-index: 11;
     box-shadow: 0 0 20px #ff0000;
 }
 
-#popup.hidden {
-    display: none;
-}
-
-#popup h2 {
-    margin-top: 0;
-}
-
-#popup label {
-    margin-right: 10px;
-}
-
+#popup.hidden { display: none; }
+#popup h2 { margin-top: 0; }
+#popup label { margin-right: 10px; }
 #popup input {
     width: 50px;
     background-color: #333;
@@ -88,7 +90,6 @@ h1 {
     border: 1px solid #ff0000;
     font-family: 'Orbitron', sans-serif;
 }
-
 #popup button {
     margin-top: 10px;
     background-color: #ff0000;
@@ -99,32 +100,41 @@ h1 {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* Mobile Responsive Styles */
+#explosion-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.explosion {
+    position: absolute;
+    height: auto;
+    animation: explode 0.75s linear forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
 @media (max-width: 768px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    #timer {
-        font-size: 4.5rem;
-    }
-
-    #popup {
-        width: 85%;
-        padding: 15px;
-    }
-
-    #popup h2 {
-        font-size: 1.2rem;
-    }
-
-    #popup label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    
-    #popup input {
-        width: calc(100% - 12px);
-        margin-bottom: 10px;
-    }
+    #arming-text { font-size: 1.5rem; }
+    h1 { font-size: 1.8rem; }
+    #timer { font-size: 4.5rem; }
+    #popup { width: 85%; padding: 15px; }
+    #popup h2 { font-size: 1.2rem; }
+    #popup label { display: block; margin-bottom: 5px; }
+    #popup input { width: calc(100% - 12px); margin-bottom: 10px; }
+    .explosion { width: 150px; }
 }

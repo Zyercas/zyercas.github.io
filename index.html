@@ -8,7 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="arming-overlay">
+        <div id="arming-text">CLICK TO ARM THE SYSTEM</div>
+    </div>
+
     <div class="overlay"></div>
+    <div id="explosion-container"></div>
     <h1>DUELLO CON VANCE TIMER</h1>
     <div id="timer">
         <span id="hours">05</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
@@ -25,6 +30,9 @@
         <button id="set-time">Set Time</button>
         <button id="close-popup">Close</button>
     </div>
+
+    <audio id="alarm-sound" src="assets/alarm.mp3" preload="auto"></audio>
+    <audio id="explosion-sound" src="assets/explosion.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
