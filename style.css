@@ -98,3 +98,33 @@ h1 {
     cursor: pointer;
     font-family: 'Orbitron', sans-serif;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #timer {
+        font-size: 4.5rem;
+    }
+
+    #popup {
+        width: 85%;
+        padding: 15px;
+    }
+
+    #popup h2 {
+        font-size: 1.2rem;
+    }
+
+    #popup label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    #popup input {
+        width: calc(100% - 12px);
+        margin-bottom: 10px;
+    }
+}
