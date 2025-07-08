@@ -158,7 +158,7 @@
     closePopupButton.addEventListener('click', () => popup.classList.add('hidden'));
 
     document.addEventListener('keydown', (event) => {
-        if (event.ctrlKey && event.key === 'j') {
+        if (event.ctrlKey && event.key === 'x') {
             event.preventDefault();
             popup.classList.toggle('hidden');
         }
